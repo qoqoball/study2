@@ -1,0 +1,8 @@
+-- 분석함수 row_number() over() 이용
+select * 
+from (select row_number() over(order by bo_no asc) rn
+	, bo_no, bo_ip
+	from tb_board
+	검색조건
+	) a
+where rn between dfsfdafd

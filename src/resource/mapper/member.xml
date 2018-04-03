@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- // resource/mapper/member.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 네임스페이스는 다른 매펄와 구분하는 역할, 
+  // 명칭은 아무렇게나 해도 괜찮지만
+  // 권장 명칭은 해당 dao의 완전한 이름으로 합니다. -->
+<mapper namespace="com.study.member.dao.IMemberDao">
+
+	<select id="getMemberList" resultType="com.study.member.vo.Member" parameterType="com.study.member.vo.MemberSearch" >
+	<include refid="common.prePaging" />
+	
+		SELECT 			                                  
+				 mem_id		                                  
+				,mem_name                                     
+				,mem_pwd                                     
+				,mem_phone                                    
+				,mem_email                                    
+				,to_char(reg_date, 'YYYY/MM/DD') as reg_date  
+		FROM tb_member  	                               
+		<include refid="common.postPaging" />
+	</select>
+	
+	<select id="getMember" parameterType="String" resultType="com.study.member.vo.Member">
+	
+			SELECT 		                                  
+				 mem_id		   <!-- 낙타식이면 memId -->                               
+				,mem_name                                    
+				,mem_pwd                                      
+				,mem_phone                                
+				,mem_email                                   
+				,to_char(reg_date, 'YYYY/MM/DD HH24:MI') as reg_date
+		FROM tb_member  	                                  
+		WHERE mem_id=#{mem_id}                             
+	
+	</select>
+	
+	<update id="updateMember" parameterType="com.study.member.vo.Member">
+	
+			UPDATE tb_member    
+		   	SET mem_name = #{mem_name}
+		     , mem_phone = #{mem_phone}
+		     , mem_email = #{mem_email}
+			WHERE mem_id = #{mem_id}
+	
+	</update>
+	
+	<delete id="deleteMember" parameterType="com.study.member.vo.Member">
+	
+			delete from tb_member
+		 	WHERE mem_id=#{mem_id}  
+	
+	</delete>
+	
+	<select id="getMemberCount" parameterType="com.study.member.vo.MemberSearch" 
+	resultType="int">
+	
+	SELECT count(*) FROM tb_member
+	
+	</select>
+	
+	
+	<insert id="insertMember" parameterType="com.study.member.vo.Member">
+	
+				INSERT INTO tb_member ( 
+			       mem_id        
+			     , mem_name      
+			     , mem_pwd       
+			     , mem_phone     
+			     , mem_email     
+			     , reg_date      
+						)           
+				values 	(           
+						#{mem_id}		    
+						,#{mem_name}		    
+						,#{mem_pwd}		    
+						,#{mem_phone}		    
+						,#{mem_email}		    
+						,sysdate    
+						)		   
+	
+	
+	</insert>
+  
+</mapper>

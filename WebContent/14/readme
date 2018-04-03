@@ -1,0 +1,38 @@
+
+memberList.jsp
+
+
+회원등록 memberForm.jsp
+         저장 - memberInsert.jsp
+
+회원클릭 - memberView.jsp
+		   회원수정 - memberEdit.jsp
+		              저장 - memberUpdate.jsp
+---------------------------------------------
+
+oneConnOneJob : 14ms
+manyConnManyJob : 240 ~ 280ms
+oneConnManyJob : 15 ~ 40 ms
+manyConnManyJobWithPool : 15~20            
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+	String mem_id = request.getParameter("mem_id");
+	String mem_name = request.getParameter("mem_name");
+	String mem_phone = request.getParameter("mem_phone");
+	String mem_email = request.getParameter("mem_email");
+	
+	String query = "INSERT  tb_member ";
+		   query += "  SET mem_name = '" + mem_name.replaceAll("'", "''") + "'";
+		   query += "	 , mem_phone = '" + mem_phone + "'";
+		   query += " 	 , mem_email = '" + mem_email + "'";
+		   query += "WHERE mem_id = '" + mem_id + "'";
+		   
+		   System.out.println(query);
+		   
+		   
+		   insert into member (mem_id, mem_pwd, mem_name)

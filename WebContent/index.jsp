@@ -11,46 +11,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>/ index.jsp</title>
+<style type="text/css">
+	#header {}
+	#left {width: 20%; float: left;}
+	#contents {width: 80%; float: left;}
+	#footer {clear: both;}
+</style>
 
 </head>
 <body>
-<table>
-	<colgroup>
-	<col width="20%" />
-	<col />
-	</colgroup>
-	<tr>
-		<td colspan="2">
+
+<div>
+
+			<div id="header">
 			<!-- 메뉴영역 START top.jsp?age=36&id=ara -->
 			<jsp:include page="/include/top.jsp" flush="false" />
 
 			<!-- 메뉴영역 END -->
-		</td>
-	</tr>
-	<tr>
-		<td>
+			</div>
+
+	<div>
+		
+		<div id="left">
 			<!-- 좌측메뉴 START -->
 			<jsp:include page="/include/left.jsp" flush="false" />
 			<!-- 좌측메뉴 END -->
-		</td>
-		<td>
+		</div>
+		
+		<div id="contents">
 			<!-- 본문 START -->
 			A-Ra 사이트입니다.
 			<!-- 본문 END -->
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<!-- 푸터 START -->
-			<jsp:include page="/include/footer.jsp" flush="false" />
-			<!-- 푸터 END -->
-		</td>
-	</tr>
+		</div>
+	
+	</div>
+	
+	<div id="footer">
+		<!-- 푸터 START -->
+		<jsp:include page="/include/footer.jsp" flush="false" />
+		<!-- 푸터 END -->
+	</div>
 
-</table>
-
-
-
+</div>
 
 </body>
 </html>

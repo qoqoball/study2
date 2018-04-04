@@ -6,3 +6,8 @@ from (select row_number() over(order by bo_no asc) rn
 	검색조건
 	) a
 where rn between dfsfdafd
+
+
+
+#{aaa} -> " ? ", pstme.setString(1, add)
+#{aaa{ -> " aaa " statement 형식으로 처리

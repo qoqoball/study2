@@ -59,22 +59,25 @@
   </select>
   
   <select id="getBoard" parameterType="int" resultType="board">
-  SELECT                                                       
-	       bo_no                                                   
-	     , bo_title                                               
-	     , bo_writer                                              
-	     , bo_passwd                                              
-	     , bo_email
-	     , bo_content                                               
-	     , bo_ip                                                  
-	     , bo_read_cnt                                             
-	     , TO_CHAR(bo_reg_date,'YYYY/MM/DD HH24:MI') AS bo_reg_date      
-	     , TO_CHAR(bo_mod_date,'YYYY/MM/DD HH24:MI') AS bo_mod_date      
-	  FROM tb_board
-   WHERE bo_no = #{여기}
+	   SELECT                                                       
+		       bo_no                                                   
+		     , bo_title                                               
+		     , bo_writer                                              
+		     , bo_passwd                                              
+		     , bo_email
+		     , bo_content                                               
+		     , bo_ip                                                  
+		     , bo_read_cnt                                             
+		     , TO_CHAR(bo_reg_date,'YYYY/MM/DD HH24:MI') AS bo_reg_date      
+		     , TO_CHAR(bo_mod_date,'YYYY/MM/DD HH24:MI') AS bo_mod_date      
+		  FROM tb_board
+	   WHERE bo_no = #{여기}
   </select>
   
   <insert id="insertBoard" parameterType="board">
+  <selectKey keyProperty="bo_no" order="BEFORE" resultType="int"> <!-- order resultType은 저절로 된다 -->
+  	SELECT seq_board.nextval FROM dual
+  </selectKey>	<!-- 시퀀스를 별도로 저장해서 값을 담는다 밑에는 그 객체값(=#{bo_no}) 넣기 -->
   	 INSERT INTO tb_board            
        (   bo_no                 
          , bo_title              
@@ -86,7 +89,7 @@
          , bo_read_cnt           
          , bo_reg_date           
          , bo_mod_date )         
-   VALUES (  seq_board.nextval   
+   VALUES (   #{bo_no}  
 	   	    , #{bo_title}                     
 	   	    , #{bo_writer}                     
 	   	    , #{bo_passwd}                     
@@ -99,15 +102,15 @@
   </insert>
   
   <update id="updateBoard" parameterType="board">
-  	UPDATE tb_board        
-   	   SET bo_title   = #{bo_title}  
-         , bo_writer  = #{bo_writer}    
+  	    UPDATE tb_board        
+   	 	   SET bo_title   = #{bo_title}  
+        	 , bo_writer  = #{bo_writer}    
 		     , bo_passwd  = #{bo_passwd}   
 		     , bo_email   = #{bo_email}    
 		     , bo_content = #{bo_content} 
 		     , bo_ip      = #{bo_ip} 
 		     , bo_mod_date = sysdate      
-     WHERE bo_no = #{bo_no}     
+         WHERE bo_no = #{bo_no}     
   </update>
   
   

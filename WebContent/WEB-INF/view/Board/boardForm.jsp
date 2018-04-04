@@ -26,7 +26,7 @@
 <div class="page-header">
 	<h2>글 등록</h2>
 	
-<form action="boardInsert.jsp" method="post">
+<form action="boardInsert.do" method="post">
 <div class="row">	
 
 
@@ -49,6 +49,16 @@
 			</td>
 		
 		</tr>
+		
+				<tr>
+			
+			<th>이메일</th>
+			<td>
+				<input type="text" name="bo_email" value="">
+			</td>
+		
+		</tr>
+		
 		
 		<tr>
 			
@@ -74,7 +84,7 @@
 <div class="row">
 	<div class="col-md-6 col-xs-4">
 	
-		<a href="boardList.jsp" class="btn btn-xs btn-default">목록으로</a>
+		<a href="boardList.do" class="btn btn-xs btn-default">목록으로</a>
 	</div>
 	<div class="col-md-6 text-right">
 		<button type="submit" class="btn btn-xs btn-default">저장</button>

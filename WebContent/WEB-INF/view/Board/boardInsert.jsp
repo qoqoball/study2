@@ -27,30 +27,20 @@
 </head>
 <body>
 <div class="container">
-<jsp:useBean id="board" class="com.study.board.vo.Board" />
-<jsp:setProperty property="*" name="board" />
-	<%	
-	
-	board.setBo_ip(request.getRemoteAddr());
-	BoardServiceImpl boardService = new BoardServiceImpl();
-	int cnt = boardService.registBoard(board);
 
-
-	if(cnt > 0) {
-	%>	
-	<div class="row text-center" />
+	<div class="row text-center" >
 	<div class="alert alert-success">
-		글 등록에 성공하였습니다.
+		${message}
 	</div>
-	<a href="boardList.jsp" class="btn btn-xs btn-default">목록으로</a>
-	<%
-	}else {
-	%>
+	</div>
+	
 	<div class="row">
-		실패~~
+	<div class="col-md-6 col-xs-4">
+	<a href="boardList.do" class="btn btn-xs btn-default">목록으로</a>
+	<a href="boardView.do?bo_no=${board.bo_no}" class="btn btn-xs btn-default">글 보기</a>
 	</div>
-	<%
-	}
-	%>
+	</div>
+
+	</div>
 </body>
 </html>
